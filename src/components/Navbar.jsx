@@ -1,8 +1,53 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 function Navbar() {
+  const [scrollY, setScrollY] = useState(0);
+  const [isScrollingUp, setIsScrollingUp] = useState(false);
+  const [isPageLoaded, setIsPageLoaded] = useState(true);
+
+  // Handle scroll direction
+  const handleScroll = () => {
+    const currentScrollY = window.scrollY;
+    
+    if (currentScrollY < scrollY) {
+      setIsScrollingUp(true);  // Scrolling up
+    } else {
+      setIsScrollingUp(false); // Scrolling down
+    }
+    
+    setScrollY(currentScrollY);
+  };
+
+  useEffect(() => {
+    // Add scroll event listener
+    window.addEventListener("scroll", handleScroll);
+    
+    return () => {
+      // Cleanup event listener on component unmount
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [scrollY]);
+
+  useEffect(() => {
+    // After initial load, set the pageLoaded state to false
+    const timeoutId = setTimeout(() => setIsPageLoaded(false), 100000); // Keep navbar visible for 3 seconds on load
+    return () => clearTimeout(timeoutId); // Clear the timeout when component unmounts
+  }, []);
+
+
+  const handleScrollToSection = (id) => {
+    const section = document.getElementById(id);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
+  };
   return (
-    <div className="fixed z-[999] w-full px-20 py-8 font-['Neue Montreal'] flex justify-between items-center">
+    <div
+      className={`fixed z-[999] w-full px-20 py-8 font-['Neue Montreal'] flex justify-between items-center transition-all duration-300 ease-in-out ${
+        isScrollingUp || isPageLoaded ? "translate-y-0 bg-opacity-80 backdrop-blur-md" : "-translate-y-full"
+      }`}
+      style={{ backgroundColor: isScrollingUp || isPageLoaded ? "rgba(0, 0, 0, 0.5)" : "transparent" }}
+    >
       <div className="logo">
         <svg
           width="72"
@@ -33,17 +78,22 @@ function Navbar() {
           ></path>
         </svg>
       </div>
-      <div className="links flex gap-10">
-        {["Services", "Our Work", "About Us", "Insights", "Contact Us"].map(
-          (item, index) => (
-            <a
-              key={index}
-              className={`text-lg font-light ${index === 4 && "ml-40"}`}
-            >
-              {item}
-            </a>
-          )
-        )}
+      <div className="links flex gap-10 cursor-pointer">
+        {[
+          { name: "Education", link: "landing" },
+          { name: "My Work", link: "featured" },
+          { name: "About Me", link: "about" },
+          { name: "Experience", link: "eyes" },
+          { name: "Contact Me", link: "footer" }
+        ].map((item, index) => (
+          <a
+            key={index}
+            className={`text-lg font-light ${index === 4 && "ml-40"}`}
+            onClick={() => handleScrollToSection(item.link)} // Triggers smooth scroll
+          >
+            {item.name}
+          </a>
+        ))}
       </div>
     </div>
   );

@@ -11,7 +11,7 @@ function LandingPage() {
       className="w-full h-screen bg-zinc-900 pt-1"
     >
       <div className="textstructure mt-52 px-20">
-        {["WE CREATE", "EYE OPENING", "PRESENTATIONS"].map((item, index) => {
+        {["I CREATE", "EYE OPENING", "WEBSITES"].map((item, index) => {
           return (
             <div className="masker ">
               <div className="w-fit flex ">

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import Navbar from "./components/Navbar";
 import LandingPage from "./components/LandingPage";
 import Marquee from "./components/Marquee";
@@ -10,15 +10,33 @@ import Footer from "./components/Footer";
 import LocomotiveScroll from "locomotive-scroll";
 
 function App() {
-  const locomotiveScroll = new LocomotiveScroll();
+  const scrollRef = useRef(null);
+
+  useEffect(() => {
+    const locomotiveScroll = new LocomotiveScroll({
+      el: scrollRef.current,
+      smooth: true,
+    });
+
+    return () => {
+      locomotiveScroll.destroy(); // Cleanup scroll instance when component unmounts
+    };
+  }, []);
+
   return (
-    <div className="w-full min-h-screen bg-zinc-900  text-white">
+    <div ref={scrollRef} className="w-full min-h-screen bg-zinc-900 text-white" data-scroll-container>
       <Navbar />
-      <LandingPage />
-      <Marquee />
-      <About />
+      <section id="landing" data-scroll-section>
+        <LandingPage />
+        <Marquee />
+      </section>
+      <section id="about" data-scroll-section>
+        <About />
+      </section>
       <Eyes />
-      <Featured />
+      <section id="featured" data-scroll-section>
+        <Featured />
+      </section>
       <Cards />
       <Footer />
     </div>

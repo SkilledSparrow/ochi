@@ -1,12 +1,20 @@
 import React from "react";
-
 function Footer() {
+
+
   return (
-    <div className="flex gap-5 w-full h-screen bg-zinc-900 p-20">
+    <>
+    
+    <div className="flex gap-5 w-full h-screen bg-zinc-900 p-20 text-white">
+      {/* Left Section */}
       <div className="w-1/2 h-full flex flex-col justify-between">
         <div className="heading">
-          <h1 className="text-7xl font-semibold leading-none">EYE-</h1>
-          <h1 className="text-7xl font-semibold leading-none">OPENING</h1>
+          <h1 className="text-7xl font-semibold leading-none scale-y-150">
+            EYE-
+          </h1>
+          <h1 className="text-7xl mt-5 font-semibold leading-none scale-y-150">
+            OPENING
+          </h1>
         </div>
         <svg
           width="72"
@@ -37,10 +45,160 @@ function Footer() {
           ></path>
         </svg>
       </div>
-      <div className="w-1/2">
-        <h1 className="text-7xl font-semibold leading-none">PRESENTATIONS</h1>
+
+      {/* Right Section */}
+      <div className="w-1/2 h-full flex flex-col justify-between">
+        {/* PRESENTATIONS Heading */}
+        <div className="heading">
+          <h1 className="text-7xl font-semibold leading-none scale-y-150">
+            PRESENTATIONS
+          </h1>
+        </div>
+
+        <div className="flex justify-between">
+          {/* Left Half (S, L, E) */}
+          <div className="w-1/2 flex flex-col gap-10 text-xl">
+            {/* S: Links */}
+            <div>
+              <p className="font-bold">S:</p>
+              <ul>
+                <li>
+                  <a
+                    href="https://www.instagram.com/skilled__sparrow/"
+                    className="relative inline-block"
+                    target="_blank"
+                  >
+                   Instagram
+                     
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://leetcode.com/u/skilled_sparrow/"
+                    className="relative inline-block"
+                    target="_blank"
+                  >
+                    Leetcode
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://www.facebook.com"
+                    className="relative inline-block"
+                    target="_blank"
+                  >
+                    Medium
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://www.linkedin.com/in/abhishek-sharma-is-here/"
+                    className="relative inline-block"
+                    target="_blank"
+                  >
+                    Linkedin
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            {/* L: Locations */}
+            <div>
+              <p className="font-bold">L:</p>
+              <ul>
+              {/* <li>
+                  <a
+                    href="https://www.google.com/maps"
+                    className="relative inline-block"
+                    target="_blank"
+                  >
+                    Delhi <br />
+                    <motion.span
+                      className="block h-[2px] bg-white"
+                      variants={linkVariants}
+                      initial="visible"
+                      whileHover="hidden"
+                      transition={{ duration: 0.3 }}
+                    />
+                    India
+                    <motion.span
+                      className="block h-[2px] bg-white"
+                      variants={linkVariants}
+                      initial="visible"
+                      whileHover="hidden"
+                      transition={{ duration: 0.3 }}
+                    />
+                  </a>
+                </li> */}
+                <li>
+                  <a
+                    href="https://www.google.com/maps"
+                    className="relative inline-block"
+                    target="_blank"
+                  >
+                    Delhi <br />
+                    
+                    India
+                  
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            {/* E: Email */}
+            <div>
+              <p className="font-bold">E:</p>
+              <a
+                href="mailto:as850082@gmail.com"
+                className="relative inline-block"
+              >
+                as850082@gmail.com
+              </a>
+              <br />
+              <a
+                href="mailto:abhishek_sharma@zykrr.com"
+                className="relative inline-block"
+              >
+                abhishek_sharma@zykrr.com
+              </a>
+            </div>
+          </div>
+
+          {/* Right Half (M: Menu) */}
+          <div className="w-1/2 flex flex-col gap-10 text-xl">
+            <p className="font-bold">M:</p>
+            <ul>
+              <li>
+                <a href="#" className="relative inline-block">
+                  Home
+                </a>
+              </li>
+              <li>
+                <a href="#" className="relative inline-block">
+                  Services
+                </a>
+              </li>
+              <li>
+                <a href="#" className="relative inline-block">
+                  Our work
+                </a>
+              </li>
+              <li>
+                <a href="#" className="relative inline-block">
+                  About us
+                </a>
+              </li>
+              <li>
+                <a href="#" className="relative inline-block">
+                  Insights
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
+    </>
   );
 }
 
